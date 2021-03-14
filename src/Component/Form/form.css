@@ -1,0 +1,28 @@
+
+/* the container of the entire builder */
+.short-answer-form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    width: 600px;
+    margin-left: 5rem;
+}
+
+/* set the style except text */
+.short-answer-form input {
+    margin: 1rem;
+    width: 80px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+/* set the style of the form-text */
+.short-answer-form .form-text {
+    width: 90%;
+    padding: 0.5rem;
+}
+
+.form-submit {
+    cursor: pointer;
+}

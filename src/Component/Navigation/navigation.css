@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    text-align: left;
+    
+    z-index: -1;
+    height: 60px;
+    width: 800px;
+      
+    margin-top: 2rem;
+    margin-left: 10rem;
+    border-bottom: 6px solid;
+    border-color: #00bfff;
+
+    background-color: white;    
+}
+
+.nav-link {
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    height: 40px;
+    width: 150px;
+    display: inline;
+
+    margin: 14px;
+    margin-bottom: 2rem;
+    border: 1px solid;
+    border-bottom: 0;
+    border-color: gray;
+    padding: 5px;
+
+    background: white;
+    color: black;
+    
+    
+}
+
+ a {
+    text-decoration: none;
+    
+}
+
+.selected {
+    background: #00bfff;
+    color: white;
+    
+}
