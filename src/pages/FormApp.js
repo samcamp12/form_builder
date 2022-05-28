@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import ShortAnswer from "components/Form/ShortAnswer";
 import FormTitle from "components/Form/FormTitle";
 import { Dropdown } from "primereact/dropdown";
-import { FormTypeEnum } from "Constants/FormTypeEnum";
+import { FormTypeEnum } from "constants/FormTypeEnum";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -13,7 +13,7 @@ import MultipleChoice from "components/Form/MultipleChoice";
 
 const FormApp = () => {
 
-    const formData = useSelector(state => state.formState.formList);
+    const { formList, title }  = useSelector(state => state.formState);
     const dispatch = useDispatch();
     const [addForm, setAddForm] = useState(false);
     const [addFormType, setAddFormType] = useState();
@@ -36,10 +36,8 @@ const FormApp = () => {
         })
         setAddForm(false);
     }
-
-
     
-    const forms = formData.map((x, i) => {
+    const forms = formList.map((x, i) => {
         switch (x.formType) {
             case FormTypeEnum.shortAnswer: 
                 return (
@@ -71,8 +69,8 @@ const FormApp = () => {
 
     return (
         <React.Fragment>
-            <div className={"container"}>
-                <FormTitle/>
+            <div className={"forms-container"}>
+                <FormTitle formTitle={title} />
                 {forms}
                 {addForm ? 
                     <Dropdown

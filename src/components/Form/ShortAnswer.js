@@ -11,6 +11,7 @@ const ShortAnswer = (props) => {
 
     return (
         <div className="p-form-container">
+            <div className="p-form-index">#{id+1}</div>
             <div>
                 <InputText 
                     className="p-field"
@@ -31,7 +32,6 @@ const ShortAnswer = (props) => {
                     onChange={(e) => setShortAnswer(e.target.value)}
                 />
             </div>
-            <div style={{textAlign: "center"}}>{id}</div>
             <ControlBar
                 formId={id}
                 title={title}

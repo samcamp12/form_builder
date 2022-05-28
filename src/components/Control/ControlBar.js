@@ -46,7 +46,7 @@ const ControlBar = (props) => {
                 onChange={onSwitchChange}
                 className={"control-switch"}
             />
-            <div className={isRequired ? "required-checked" : "required"}>Required</div>
+            <div className={isRequired ? "required-checked" : "required-unchecked"}>Required</div>
         </div>
     )
 

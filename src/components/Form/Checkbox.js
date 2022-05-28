@@ -72,6 +72,7 @@ const CheckBox = (props) => {
 
     return (
         <div className="p-form-container">
+            <div className="p-form-index">#{id+1}</div>
             <div>
                 <InputText 
                     className="p-field"
@@ -113,7 +114,6 @@ const CheckBox = (props) => {
                     />
                 }
             </div>
-            <div style={{textAlign: "center"}}>{id}</div>
             <ControlBar
                 formId={id}
                 title={title}

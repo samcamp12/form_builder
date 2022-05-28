@@ -1,3 +1,5 @@
+export const ADD_TITLE = "ADD_TITLE";
+export const ADD_TITLE_DESCRIPTION = "ADD_TITLE_DESCRIPTION";
 export const DUPLICATE_FORM = "DUPLICATE_FORM";
 export const ADD_FORM = "ADD_FORM";
 export const DELETE_FORM = "DELETE_FORM";

@@ -7,11 +7,17 @@ import Preview from "./Preview";
 const tabItems = [
     {
         header: "Form Builder",
-        content: <FormApp />,
+        content: <div className="content">
+                    <img src={process.env.PUBLIC_URL + "/images/builder-background.jpg"} alt={"background"}/>
+                    <FormApp />
+                </div>,
     },
     {
         header: "Preview",
-        content: <Preview />,
+        content: <div className="content">
+                    <img src={process.env.PUBLIC_URL + "/images/previewr-background.jpg"} alt={"background"}/>
+                    <Preview />
+                </div>
     },
 ]
 
@@ -19,8 +25,8 @@ const Home = () => {
 
     const renderHomePage = tabItems.map(item => {
         return (
-            <TabPanel header={item.header}>
-                {item.content}
+            <TabPanel header={item.header} key={item.header}>
+                {item.content}       
             </TabPanel>
         )
     })
@@ -28,7 +34,7 @@ const Home = () => {
     return (
         <React.Fragment>
             <TabView>
-                {renderHomePage}                
+                {renderHomePage}                       
             </TabView>
         </React.Fragment>
     )

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { InputText } from "primereact/inputtext";
+import { useDispatch } from "react-redux";
 
-const FormTitle = (props) => {
+import * as actionTypes from "store/actions/actionTypes"; 
 
-    const [ title, setTitle ] = useState();
-    const [ description, setDescription ] = useState();
+const FormTitle = ({formTitle}) => {
+
+    const dispatch = useDispatch();
 
     return (
         <div className="p-form-container">
@@ -13,9 +15,9 @@ const FormTitle = (props) => {
                     className="p-field"
                     id="question" 
                     type="text"
-                    value={title}
+                    value={formTitle.formTitle}
                     placeholder="Form title"
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => dispatch({type: actionTypes.ADD_TITLE, formTitle: e.target.value})}
                 />
             </div>
             <div>
@@ -23,9 +25,9 @@ const FormTitle = (props) => {
                     className="p-field"
                     id="answer" 
                     type="text"
-                    value={description}
+                    value={formTitle.description}
                     placeholder="Form Description (Optional)"
-                    onChange={(e) => setDescription(e.target.value)}
+                    onChange={(e) => dispatch({type: actionTypes.ADD_TITLE_DESCRIPTION, description: e.target.value})}
                 />
             </div>
         </div>

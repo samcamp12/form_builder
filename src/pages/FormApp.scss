@@ -1,27 +1,40 @@
 
-.container {
-    border: 1px solid #888888;
+.forms-container {
     padding: 20px;
     align-content: center;
-    width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 450px;
+    margin: auto;
+    border: 2px solid white;
+    background-color: #888888;
 
     .p-form-container {
+        z-index: 10;
         margin: 10px;
         margin-bottom: 1.5rem;
-        border: 1.5px solid #111111;
+        border: 2px solid white;
         border-radius: 5px;
+        background-color: snow;
+        opacity: 0.9;
         width: 400px;
+        
+        .p-form-index {
+            position: absolute;
+            padding: 5px 0 0 10px;
+            font-size: 12px;
+        }
         
         .p-field {
             font-size: 18px;
             padding: 5px;
-            margin: 10px;
-            border: 1px solid #888888;
-            border-radius: 5px;
+            margin: 15px 10px 10px 10px;
+            border-width: 0 0 2px 0;
+            background: none;
+            border-radius: 0;
             width: 350px;
+            border-color: dimgray;
         }
 
         .radio-button-list {
@@ -131,22 +144,28 @@
             margin-right: 5px;
         }
 
-        .required-checked {
+        %required {
             background: green;
             color: white;
             padding: 5px 8px 5px 8px;
             font-size: 14px;
+            
+        }
+
+        .required-checked {
+            @extend %required;
             border-radius: 5px;
         }
 
-        .required {
+        .required-unchecked {
+            @extend %required;
             color: gray;
-            font-size: 14px;
-            padding: 5px 8px 5px 8px;
+            background: none;
         }
     }
 
     .add-button {
+        z-index: 10;
         :hover {
             cursor: pointer;
             color: grey;
@@ -154,7 +173,42 @@
     }
     
     .add-option-button {
+        z-index: 10;
         height: 10px;
-        margin-left: 8px;
+        margin: 0 0 5px 8px;
     }
+}
+
+// background
+.content {
+    height: auto;
+    position: relative;
+    padding-top: 20px;
+    img {
+        /* Set rules to fill background */
+        min-height: 100%;
+            
+        /* Set up proportionate scaling */
+        width: 100%;
+        height: auto;
+            
+        /* Set up positioning */
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        pointer-events: none;
+    }
+}
+
+// override the tabview
+
+.p-tabview-panels {
+}
+
+.p-tabview-nav-container {
+    z-index: 1000;
+    width: 100%;
+    position: fixed !important;
+    top: 0;
 }
