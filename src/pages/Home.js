@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import FormApp from "./FormApp";
 import Preview from "./Preview";
+import bgBuilder from "images/builder-background.jpg";
+import bgPreview from "images/preview-background.jpg";
 
 
 const tabItems = [
     {
         header: "Form Builder",
         content: <div className="content">
-                    <img src={process.env.PUBLIC_URL + "/images/builder-background.jpg"} alt={"background"}/>
+                    <img src={bgBuilder} alt={"background"}/>
                     <FormApp />
                 </div>,
     },
     {
         header: "Preview",
         content: <div className="content">
-                    <img src={process.env.PUBLIC_URL + "/images/previewr-background.jpg"} alt={"background"}/>
+                    <img src={bgPreview} alt={"background"}/>
                     <Preview />
                 </div>
     },
