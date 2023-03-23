@@ -1,8 +1,8 @@
-import React from "react";
+import * as React from "react";
 import { InputText } from "primereact/inputtext";
 import { useDispatch } from "react-redux";
 
-import * as actionTypes from "store/actions/actionTypes"; 
+import * as actionTypes from "store/actions/actionTypes";; 
 
 const FormTitle = ({formTitle}) => {
 

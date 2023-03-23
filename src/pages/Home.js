@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import FormApp from "./FormApp";
 import Preview from "./Preview";
 import bgBuilder from "images/builder-background.jpg";
-import bgPreview from "images/preview-background.jpg";
+import bgPreview from "images/preview-background.jpg";;
 
 
 const tabItems = [

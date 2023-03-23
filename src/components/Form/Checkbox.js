@@ -13,18 +13,7 @@ const CheckBox = (props) => {
     const [ checkBox, setCheckBox ] = useState([]);
     const [ beginAddOption, setBeginAddOption] = useState(false);
     const [ newOptionInput, setNewOptionInput ] = useState("");
-    const [ options, setOptions ] = useState([
-        {   
-            id: 1,
-            name: "CheckBox 1",
-            checked: false,
-        },
-        {   
-            id: 2,
-            name: "CheckBox 2",
-            checked: false,
-        }
-    ]) 
+    const [ options, setOptions ] = useState([]) 
     
 
     const onAddOption = () => {
@@ -36,6 +25,10 @@ const CheckBox = (props) => {
     }
 
     const onSaveOption = () => {
+        if(newOptionInput === "") {
+            console.log("cannot set empty options")
+            return;
+        }
         setOptions([
             ...options,
             {   
@@ -108,7 +101,7 @@ const CheckBox = (props) => {
                         />
                     </div> :
                     <Button
-                        label={"Add Option"}
+                        label={"Add Checkbox"}
                         onClick={onAddOption}
                         className="add-option-button"
                     />
