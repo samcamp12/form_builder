@@ -25,6 +25,7 @@ const MultipleChoice = (props) => {
 
     const onCloseOption = () => {
         setBeginAddOption(false);
+        setError(false);
     }
 
     const onSaveOption = () => {
@@ -107,10 +108,8 @@ const MultipleChoice = (props) => {
             <div className="multiple-choice-list">
                 {choiceList}
             </div>
-            
                 {beginAddOption ? 
                     <div>
-                        <FormOptionValidator errorMessage={error} />
                         <div className={"checkbox-input"}>
                             <InputText
                                 className="p-field"
@@ -130,6 +129,7 @@ const MultipleChoice = (props) => {
                                 onClick={onCloseOption}
                             />
                         </div>
+                        <FormOptionValidator errorMessage={error} />
                     </div> :
                     <Button
                         label={"Add Choice"}

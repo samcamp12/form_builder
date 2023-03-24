@@ -7,7 +7,7 @@ import { FormTypeEnum } from "constants/FormTypeEnum";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import "./FormApp.scss"
+import "styles/FormApp.scss"
 import CheckBox from "components/Form/Checkbox";
 import MultipleChoice from "components/Form/MultipleChoice";
 

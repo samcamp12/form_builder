@@ -4,16 +4,20 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { createNewId } from "store/utils";
 import ControlBar from "components/Control/ControlBar";
+import * as actionTypes from "store/actions/actionTypes";
+import { FormOptionValidator } from "components/Error/FormOptionValidator";
+import { useDispatch } from "react-redux";
 
 const CheckBox = (props) => {
     
-    const { id } = props;
+    const { id, options } = props;
+    const dispatch = useDispatch();
 
     const [ title, setTitle ] = useState("");
     const [ checkBox, setCheckBox ] = useState([]);
     const [ beginAddOption, setBeginAddOption] = useState(false);
     const [ newOptionInput, setNewOptionInput ] = useState("");
-    const [ options, setOptions ] = useState([]) 
+    const [ error, setError ] = useState();
     
 
     const onAddOption = () => {
@@ -26,24 +30,41 @@ const CheckBox = (props) => {
 
     const onSaveOption = () => {
         if(newOptionInput === "") {
-            console.log("cannot set empty options")
+            setError("cannot set empty options");
             return;
         }
-        setOptions([
-            ...options,
-            {   
-                id: createNewId(options.map(x => x.id)),
-                name: newOptionInput,
-                checked: false,
-            }
-        ])
-        setNewOptionInput("")
-        setBeginAddOption(false)
+        if (options.map(option => option.name).indexOf(newOptionInput) === -1) {
+            setError(null);
+            dispatch({
+                type: actionTypes.CHANGE_OPTIONS,
+                id: id,
+                options: [
+                    ...options,
+                    {   
+                        id: createNewId(options.map(x => x.id)),
+                        name: newOptionInput,
+                        value: newOptionInput
+                    }
+                ]
+            });
+            setNewOptionInput("");
+            setBeginAddOption(false);
+        } else {
+            setError("Cannot set duplicate options");
+        }
     }
 
     const onRemoveOption = (e) => {
         const newOptionList = options.filter(x => x.id.toString() !== e.target.id)
-        setOptions([...newOptionList])
+        dispatch({
+            type: actionTypes.CHANGE_OPTIONS,
+            id: id,
+            options: newOptionList,
+        });
+    }
+
+    const handleClickRadioButton = (e) => {
+        setCheckBox(e.value);
     }
 
     const radioButtons = options.map((x, i) => {
@@ -51,7 +72,8 @@ const CheckBox = (props) => {
             <div className="radio-button" key={x.id}>
                 <RadioButton 
                     id="question" 
-                    checked={x.checked}
+                    checked={x.value === checkBox}
+                    onChange={handleClickRadioButton}
                 />
                 <label style={{ marginLeft: "8px"}}>{x.name}</label> 
                 <button
@@ -81,25 +103,28 @@ const CheckBox = (props) => {
             </div>
             <div>
                 {beginAddOption ? 
-                    <div className={"checkbox-input"}>
-                        <InputText
-                            className="p-field"
-                            id="addOption" 
-                            value={newOptionInput}
-                            placeholder={"Option Name"}
-                            onChange={(e) => setNewOptionInput(e.target.value)}
-                        /> 
-                        <Button
-                            icon={"pi pi-check"}
-                            className={"control-button"}
-                            onClick={onSaveOption}
-                        />
-                        <Button
-                            icon={"pi pi-times"}
-                            className={"control-button-close"}
-                            onClick={onCloseOption}
-                        />
-                    </div> :
+                    <div>
+                        <div className={"checkbox-input"}>
+                            <InputText
+                                className="p-field"
+                                id="addOption" 
+                                value={newOptionInput}
+                                placeholder={"Option Name"}
+                                onChange={(e) => setNewOptionInput(e.target.value)}
+                            /> 
+                            <Button
+                                icon={"pi pi-check"}
+                                className={"control-button"}
+                                onClick={onSaveOption}
+                            />
+                            <Button
+                                icon={"pi pi-times"}
+                                className={"control-button-close"}
+                                onClick={onCloseOption}
+                            />
+                        </div>  
+                        <FormOptionValidator errorMessage={error} />                   
+                    </div>:
                     <Button
                         label={"Add Checkbox"}
                         onClick={onAddOption}
