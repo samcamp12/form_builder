@@ -1,9 +1,7 @@
-import * as React from "react";;
+import * as React from "react";
 
 const Preview = () => {
-    return (
-        <div>Preview</div>
-    )
-}
+    return <div>Preview</div>;
+};
 
 export default Preview;

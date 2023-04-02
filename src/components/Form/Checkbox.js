@@ -7,111 +7,98 @@ import ControlBar from "components/Control/ControlBar";
 import * as actionTypes from "store/actions/actionTypes";
 import { FormOptionValidator } from "components/Error/FormOptionValidator";
 import { useDispatch } from "react-redux";
+import { FormTitle } from "./FormComponents/FormTitle";
 
 const CheckBox = (props) => {
-    
-    const { id, options } = props;
+    const { id, title, options } = props;
     const dispatch = useDispatch();
-
-    const [ title, setTitle ] = useState("");
-    const [ checkBox, setCheckBox ] = useState([]);
-    const [ beginAddOption, setBeginAddOption] = useState(false);
-    const [ newOptionInput, setNewOptionInput ] = useState("");
-    const [ error, setError ] = useState();
-    
+    const [checkBox, setCheckBox] = useState([]);
+    const [beginAddOption, setBeginAddOption] = useState(false);
+    const [newOptionInput, setNewOptionInput] = useState("");
+    const [error, setError] = useState();
 
     const onAddOption = () => {
-        setBeginAddOption(true)
-    }
+        setBeginAddOption(true);
+    };
 
     const onCloseOption = () => {
         setBeginAddOption(false);
-    }
+    };
 
     const onSaveOption = () => {
-        if(newOptionInput === "") {
+        if (newOptionInput === "") {
             setError("cannot set empty options");
             return;
         }
-        if (options.map(option => option.name).indexOf(newOptionInput) === -1) {
+        if (options.map((option) => option.name).indexOf(newOptionInput) === -1) {
             setError(null);
             dispatch({
                 type: actionTypes.CHANGE_OPTIONS,
-                id: id,
+                id,
                 options: [
                     ...options,
-                    {   
-                        id: createNewId(options.map(x => x.id)),
+                    {
+                        id: createNewId(options.map((x) => x.id)),
                         name: newOptionInput,
-                        value: newOptionInput
-                    }
-                ]
+                        value: newOptionInput,
+                    },
+                ],
             });
             setNewOptionInput("");
             setBeginAddOption(false);
         } else {
             setError("Cannot set duplicate options");
         }
-    }
+    };
 
     const onRemoveOption = (e) => {
-        const newOptionList = options.filter(x => x.id.toString() !== e.target.id)
+        const newOptionList = options.filter((x) => x.id.toString() !== e.target.id);
         dispatch({
             type: actionTypes.CHANGE_OPTIONS,
-            id: id,
+            id,
             options: newOptionList,
         });
-    }
+    };
 
     const handleClickRadioButton = (e) => {
         setCheckBox(e.value);
-    }
+    };
 
     const radioButtons = options.map((x, i) => {
         return (
             <div className="radio-button" key={x.id}>
-                <RadioButton 
-                    id="question" 
+                <RadioButton
+                    id="question"
                     checked={x.value === checkBox}
                     onChange={handleClickRadioButton}
                 />
-                <label style={{ marginLeft: "8px"}}>{x.name}</label> 
+                <label style={{ marginLeft: "8px" }}>{x.name}</label>
                 <button
                     className={"remove-option-button"}
                     onClick={(e) => onRemoveOption(e)}
-                    id={x.id}
-                ><span className="pi pi-times" id={x.id}></span></button>              
+                    id={x.id}>
+                    <span className="pi pi-times" id={x.id}></span>
+                </button>
             </div>
-        )
-    })
+        );
+    });
 
     return (
         <div className="p-form-container">
-            <div className="p-form-index">#{id+1}</div>
+            <div className="p-form-index">#{id + 1}</div>
+            <FormTitle id={id} title={title} />
+            <div className="radio-button-list">{radioButtons}</div>
             <div>
-                <InputText 
-                    className="p-field"
-                    id="question" 
-                    type="text"
-                    value={title}
-                    placeholder="Question"
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-            </div>
-            <div className="radio-button-list">
-                {radioButtons}
-            </div>
-            <div>
-                {beginAddOption ? 
+                {beginAddOption ? (
                     <div>
                         <div className={"checkbox-input"}>
                             <InputText
                                 className="p-field"
-                                id="addOption" 
+                                id="addOption"
                                 value={newOptionInput}
                                 placeholder={"Option Name"}
                                 onChange={(e) => setNewOptionInput(e.target.value)}
-                            /> 
+                            />
                             <Button
                                 icon={"pi pi-check"}
                                 className={"control-button"}
@@ -122,24 +109,20 @@ const CheckBox = (props) => {
                                 className={"control-button-close"}
                                 onClick={onCloseOption}
                             />
-                        </div>  
-                        <FormOptionValidator errorMessage={error} />                   
-                    </div>:
+                        </div>
+                        <FormOptionValidator errorMessage={error} />
+                    </div>
+                ) : (
                     <Button
                         label={"Add Checkbox"}
                         onClick={onAddOption}
                         className="add-option-button"
                     />
-                }
+                )}
             </div>
-            <ControlBar
-                formId={id}
-                title={title}
-                formType={"checkBox"}
-                value={checkBox}
-            />
+            <ControlBar formId={id} formType={"checkBox"} value={checkBox} />
         </div>
-    )
-}
+    );
+};
 
 export default CheckBox;
