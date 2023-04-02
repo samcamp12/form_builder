@@ -38,12 +38,11 @@ const addTitleDiscription = (state, action) => {
 };
 
 const changeFormTitle = (state, action) => {
-    const newFormList = state.formList;
-    const targetFormId = state.formList.findIndex((x) => x.id === action.id);
-    newFormList[targetFormId].title = action.title;
     return {
         ...state,
-        formList: [...newFormList],
+        formList: state.formList.map((form) =>
+            form.id === action.id ? { ...form, title: action.title } : form
+        ),
     };
 };
 
@@ -106,12 +105,11 @@ const setRequired = (state, action) => {
 };
 
 const changeOptions = (state, action) => {
-    const newFormList = state.formList;
-    const targetFormId = newFormList.findIndex((x) => x.id === action.id);
-    newFormList[targetFormId].options = action.options;
     return {
         ...state,
-        formList: [...newFormList],
+        formList: state.formList.map((form) =>
+            form.id === action.id ? { ...form, options: action.options } : form
+        ),
     };
 };
 
