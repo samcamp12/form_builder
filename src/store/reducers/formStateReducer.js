@@ -94,13 +94,11 @@ const removeForm = (state, action) => {
 };
 
 const setRequired = (state, action) => {
-    const newFormList = state.formList;
-    newFormList.find((x) => x.id === action.id).isRequired = !newFormList.find(
-        (x) => x.id === action.id
-    ).isRequired;
     return {
         ...state,
-        formList: newFormList,
+        formList: state.formList.map((form) =>
+            form.id === action.id ? { ...form, isRequired: !form.isRequired } : form
+        ),
     };
 };
 

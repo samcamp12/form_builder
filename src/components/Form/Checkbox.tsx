@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { RadioButton } from "primereact/radiobutton";
+import * as React from "react";
+import { RadioButton, type RadioButtonChangeParams } from "primereact/radiobutton";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { createNewId } from "store/utils";
@@ -9,29 +9,41 @@ import { FormOptionValidator } from "components/Error/FormOptionValidator";
 import { useDispatch } from "react-redux";
 import { FormTitle } from "./FormComponents/FormTitle";
 
-const CheckBox = (props) => {
+interface Option {
+    id: number;
+    name: string;
+    value: string;
+}
+
+interface ICheckboxProps {
+    id: number;
+    title: string;
+    options: Option[];
+}
+
+const CheckBox = (props: ICheckboxProps): JSX.Element => {
     const { id, title, options } = props;
     const dispatch = useDispatch();
-    const [checkBox, setCheckBox] = useState([]);
-    const [beginAddOption, setBeginAddOption] = useState(false);
-    const [newOptionInput, setNewOptionInput] = useState("");
-    const [error, setError] = useState();
+    const [selectedOption, setSelectedOption] = React.useState<string>();
+    const [beginAddOption, setBeginAddOption] = React.useState<boolean>(false);
+    const [newOptionInput, setNewOptionInput] = React.useState<string>("");
+    const [error, setError] = React.useState<string>("");
 
-    const onAddOption = () => {
+    const onAddOption = (): void => {
         setBeginAddOption(true);
     };
 
-    const onCloseOption = () => {
+    const onCloseOption = (): void => {
         setBeginAddOption(false);
     };
 
-    const onSaveOption = () => {
+    const onSaveOption = (): void => {
         if (newOptionInput === "") {
             setError("cannot set empty options");
             return;
         }
-        if (options.map((option) => option.name).indexOf(newOptionInput) === -1) {
-            setError(null);
+        if (!options.map((option) => option.name).includes(newOptionInput)) {
+            setError("");
             dispatch({
                 type: actionTypes.CHANGE_OPTIONS,
                 id,
@@ -40,7 +52,6 @@ const CheckBox = (props) => {
                     {
                         id: createNewId(options.map((x) => x.id)),
                         name: newOptionInput,
-                        value: newOptionInput,
                     },
                 ],
             });
@@ -51,7 +62,7 @@ const CheckBox = (props) => {
         }
     };
 
-    const onRemoveOption = (e) => {
+    const onRemoveOption = (e: any): void => {
         const newOptionList = options.filter((x) => x.id.toString() !== e.target.id);
         dispatch({
             type: actionTypes.CHANGE_OPTIONS,
@@ -60,24 +71,26 @@ const CheckBox = (props) => {
         });
     };
 
-    const handleClickRadioButton = (e) => {
-        setCheckBox(e.value);
+    const handleClickRadioButton = (e: RadioButtonChangeParams): void => {
+        setSelectedOption(e.target.id);
     };
 
     const radioButtons = options.map((x, i) => {
         return (
             <div className="radio-button" key={x.id}>
                 <RadioButton
-                    id="question"
-                    checked={x.value === checkBox}
+                    id={x.id.toString()}
+                    checked={x.id.toString() === selectedOption}
                     onChange={handleClickRadioButton}
                 />
                 <label style={{ marginLeft: "8px" }}>{x.name}</label>
                 <button
                     className={"remove-option-button"}
-                    onClick={(e) => onRemoveOption(e)}
-                    id={x.id}>
-                    <span className="pi pi-times" id={x.id}></span>
+                    onClick={(e) => {
+                        onRemoveOption(e);
+                    }}
+                    id={x.id.toString()}>
+                    <span className="pi pi-times" id={x.id.toString()}></span>
                 </button>
             </div>
         );
@@ -97,7 +110,9 @@ const CheckBox = (props) => {
                                 id="addOption"
                                 value={newOptionInput}
                                 placeholder={"Option Name"}
-                                onChange={(e) => setNewOptionInput(e.target.value)}
+                                onChange={(e) => {
+                                    setNewOptionInput(e.target.value);
+                                }}
                             />
                             <Button
                                 icon={"pi pi-check"}
@@ -120,7 +135,7 @@ const CheckBox = (props) => {
                     />
                 )}
             </div>
-            <ControlBar formId={id} formType={"checkBox"} value={checkBox} />
+            <ControlBar formId={id} formType={"checkBox"} value={selectedOption} />
         </div>
     );
 };
