@@ -4,7 +4,18 @@ import { useDispatch } from "react-redux";
 
 import * as actionTypes from "store/actions/actionTypes";
 
-const Title = ({ formTitle }) => {
+interface ITitleProps {
+    title: {
+        formTitle: string;
+        description: string;
+    };
+}
+
+const Title = (props: ITitleProps): JSX.Element => {
+    const { title } = props;
+
+    console.log(title);
+
     const dispatch = useDispatch();
 
     return (
@@ -14,7 +25,7 @@ const Title = ({ formTitle }) => {
                     className="p-field"
                     id="question"
                     type="text"
-                    value={formTitle.formTitle}
+                    value={title.formTitle ?? ""}
                     placeholder="Form title"
                     onChange={(e) =>
                         dispatch({ type: actionTypes.ADD_TITLE, formTitle: e.target.value })
@@ -26,7 +37,7 @@ const Title = ({ formTitle }) => {
                     className="p-field"
                     id="answer"
                     type="text"
-                    value={formTitle.description}
+                    value={title.description ?? ""}
                     placeholder="Form Description (Optional)"
                     onChange={(e) =>
                         dispatch({

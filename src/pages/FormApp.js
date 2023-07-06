@@ -52,7 +52,7 @@ const FormApp = () => {
     return (
         <React.Fragment>
             <div className={"forms-container"}>
-                <Title formTitle={title} />
+                <Title title={title} />
                 {forms}
                 {addForm ? (
                     <Dropdown

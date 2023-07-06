@@ -8,12 +8,7 @@ import * as actionTypes from "store/actions/actionTypes";
 import { FormOptionValidator } from "components/Error/FormOptionValidator";
 import { useDispatch } from "react-redux";
 import { FormTitle } from "./FormComponents/FormTitle";
-
-interface Option {
-    id: number;
-    name: string;
-    value: string;
-}
+import { type Option } from "./FormTypes";
 
 interface ICheckboxProps {
     id: number;
