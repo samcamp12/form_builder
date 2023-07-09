@@ -26,7 +26,7 @@ const tabItems = [
     },
 ];
 
-const Home = () => {
+const Home = (): JSX.Element => {
     const renderHomePage = tabItems.map((item) => {
         return (
             <TabPanel header={item.header} key={item.header}>

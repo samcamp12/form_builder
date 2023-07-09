@@ -1,29 +1,35 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { Button } from "primereact/button";
 import { InputSwitch } from "primereact/inputswitch";
 import { useSelector, useDispatch } from "react-redux";
 import * as actionTypes from "store/actions/actionTypes";
 
-const ControlBar = (props) => {
-    const { formId, formType, title, value } = props;
+interface IControlBarProps {
+    formId: number;
+}
 
-    const formData = useSelector((state) => state.formState.formList.find((x) => x.id === formId));
+const ControlBar = (props: IControlBarProps): JSX.Element => {
+    const { formId } = props;
+
+    const formData = useSelector((state: any) =>
+        state.formState.formList.find((x: { id: number }) => x.id === formId)
+    );
     const dispatch = useDispatch();
 
-    const [isRequired, setIsRequired] = useState(formData.isRequired);
+    const [isRequired, setIsRequired] = React.useState<boolean>(formData.isRequired);
 
-    const onDuplicateClick = () => {
+    const onDuplicateClick = (): void => {
         dispatch({
             type: actionTypes.DUPLICATE_FORM,
             id: formId,
         });
     };
 
-    const onRemoveClick = () => {
+    const onRemoveClick = (): void => {
         dispatch({ type: actionTypes.DELETE_FORM, id: formId });
     };
 
-    const onSwitchChange = () => {
+    const onSwitchChange = (): void => {
         setIsRequired((isRequired) => !isRequired);
         dispatch({ type: actionTypes.SET_REQUIRED, id: formId });
     };

@@ -1,4 +1,6 @@
-export const createNewId = (array) => {
+import { type Form } from "./reducers/reducerTypes";
+
+export const createNewId = (array: number[]): number => {
     if (array.length === 0) {
         return 0;
     }
@@ -20,7 +22,7 @@ export const createNewId = (array) => {
     return array[array.length - 1] + 1;
 };
 
-export const currentFormPosition = (id, array) => {
+export const currentFormPosition = (id: number, array: Form[]): number => {
     for (let i = 0; i < array.length; i++) {
         if (array[i].id === id) {
             return i;
