@@ -138,7 +138,7 @@ const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
                 <Button label={"Add Choice"} onClick={onAddOption} className="add-option-button" />
             )}
 
-            <ControlBar formId={id} formType={"multipleChoice"} value={multiChoice} />
+            <ControlBar formId={id} />
         </div>
     );
 };

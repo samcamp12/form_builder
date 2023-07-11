@@ -28,7 +28,7 @@ const ShortAnswer = (props: IShortAnswerProps): JSX.Element => {
                     }}
                 />
             </div>
-            <ControlBar formId={id} formType={"shortAnswer"} value={shortAnswer} />
+            <ControlBar formId={id} />
         </div>
     );
 };

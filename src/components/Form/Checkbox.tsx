@@ -70,7 +70,7 @@ const CheckBox = (props: ICheckboxProps): JSX.Element => {
         setSelectedOption(e.target.id);
     };
 
-    const radioButtons = options.map((x, i) => {
+    const radioButtons = options.map((x) => {
         return (
             <div className="radio-button" key={x.id}>
                 <RadioButton
@@ -130,7 +130,7 @@ const CheckBox = (props: ICheckboxProps): JSX.Element => {
                     />
                 )}
             </div>
-            <ControlBar formId={id} formType={"checkBox"} value={selectedOption} />
+            <ControlBar formId={id} />
         </div>
     );
 };

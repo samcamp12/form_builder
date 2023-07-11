@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const Preview = () => {
+const Preview = (): JSX.Element => {
     return <div>Preview</div>;
 };
 

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import * as React from "react";
 
 import ShortAnswer from "components/Form/ShortAnswer";
 import Title from "components/Form/FormTitle";
-import { Dropdown } from "primereact/dropdown";
+import { Dropdown, type DropdownChangeParams } from "primereact/dropdown";
 import { FormTypeEnum } from "constants/FormTypeEnum";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -10,12 +10,15 @@ import { useSelector, useDispatch } from "react-redux";
 import "styles/FormApp.scss";
 import CheckBox from "components/Form/Checkbox";
 import MultipleChoice from "components/Form/MultipleChoice";
+import { type AppDispatch, type RootState } from "store/store";
 
-const FormApp = () => {
-    const { formList, title } = useSelector((state) => state.formState);
-    const dispatch = useDispatch();
-    const [addForm, setAddForm] = useState(false);
-    const [addFormType, setAddFormType] = useState();
+import * as actionTypes from "store/actions/actionTypes";
+
+const FormApp = (): JSX.Element => {
+    const { formList, title } = useSelector((state: RootState) => state.formState);
+    const dispatch: AppDispatch = useDispatch();
+    const [isAddingForm, setIsAddingForm] = React.useState(false);
+    const [addFormType, setAddFormType] = React.useState<FormTypeEnum>();
 
     const formTypeItems = [
         { label: "Short Answer", value: FormTypeEnum.shortAnswer },
@@ -23,23 +26,23 @@ const FormApp = () => {
         { label: "Checkbox", value: FormTypeEnum.checkBox },
     ];
 
-    const addFormClick = () => {
-        setAddForm(true);
+    const addFormClick = (): void => {
+        setIsAddingForm(true);
     };
 
-    const onSelectChange = (e) => {
+    const onBeginAddingForm = (e: DropdownChangeParams): void => {
         setAddFormType(e.value);
         dispatch({
-            type: "ADD_FORM",
+            type: actionTypes.ADD_FORM,
             formType: e.value,
         });
-        setAddForm(false);
+        setIsAddingForm(false);
     };
 
     const forms = formList.map((x, i) => {
         switch (x.formType) {
             case FormTypeEnum.shortAnswer:
-                return <ShortAnswer key={i} id={x.id} title={x.title} options={x.options} />;
+                return <ShortAnswer key={i} id={x.id} title={x.title} />;
             case FormTypeEnum.checkBox:
                 return <CheckBox key={i} id={x.id} title={x.title} options={x.options} />;
             case FormTypeEnum.multipleChoice:
@@ -54,12 +57,14 @@ const FormApp = () => {
             <div className={"forms-container"}>
                 <Title title={title} />
                 {forms}
-                {addForm ? (
+                {isAddingForm ? (
                     <Dropdown
                         value={addFormType}
                         options={formTypeItems}
                         placeholder={"Select a Type"}
-                        onChange={(e) => onSelectChange(e)}
+                        onChange={(e) => {
+                            onBeginAddingForm(e);
+                        }}
                     />
                 ) : (
                     <div className="add-button" onClick={addFormClick}>
