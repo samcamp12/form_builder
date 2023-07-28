@@ -39,6 +39,11 @@ export interface ChangeOptionsAction extends BaseAction<typeof actionTypes.CHANG
     options: Option[];
 }
 
+export interface ChangeFormOrder extends BaseAction<typeof actionTypes.CHANGE_FORM_ORDER> {
+    dragIndex: number;
+    hoverIndex: number;
+}
+
 export type ActionType =
     | AddTitleAction
     | AddTitleDescriptionAction
@@ -47,4 +52,5 @@ export type ActionType =
     | DuplicateFormAction
     | DeleteFormAction
     | SetRequiredAction
-    | ChangeOptionsAction;
+    | ChangeOptionsAction
+    | ChangeFormOrder;

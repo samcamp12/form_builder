@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { DndProvider } from "react-dnd";
+
 import ShortAnswer from "components/Form/ShortAnswer";
 import Title from "components/Form/FormTitle";
 import { Dropdown, type DropdownChangeParams } from "primereact/dropdown";
@@ -13,6 +15,14 @@ import MultipleChoice from "components/Form/MultipleChoice";
 import { type AppDispatch, type RootState } from "store/store";
 
 import * as actionTypes from "store/actions/actionTypes";
+import { DraggableWrapper } from "components/DnD/DraggableWrapper";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
+const formTypeToComponent = {
+    [FormTypeEnum.shortAnswer]: ShortAnswer,
+    [FormTypeEnum.checkBox]: CheckBox,
+    [FormTypeEnum.multipleChoice]: MultipleChoice,
+};
 
 const FormApp = (): JSX.Element => {
     const { formList, title } = useSelector((state: RootState) => state.formState);
@@ -39,21 +49,30 @@ const FormApp = (): JSX.Element => {
         setIsAddingForm(false);
     };
 
+    const moveItem = (dragIndex: number, hoverIndex: number): void => {
+        dispatch({
+            type: actionTypes.CHANGE_FORM_ORDER,
+            dragIndex,
+            hoverIndex,
+        });
+    };
+
     const forms = formList.map((x, i) => {
-        switch (x.formType) {
-            case FormTypeEnum.shortAnswer:
-                return <ShortAnswer key={i} id={x.id} title={x.title} />;
-            case FormTypeEnum.checkBox:
-                return <CheckBox key={i} id={x.id} title={x.title} options={x.options} />;
-            case FormTypeEnum.multipleChoice:
-                return <MultipleChoice key={i} id={x.id} title={x.title} options={x.options} />;
-            default:
-                return "";
+        if (!(x.formType in formTypeToComponent)) {
+            return <></>;
         }
+
+        const Component = formTypeToComponent[x.formType];
+
+        return (
+            <DraggableWrapper key={i} id={x.id} moveItem={moveItem}>
+                <Component id={x.id} title={x.title} options={x.options} />
+            </DraggableWrapper>
+        );
     });
 
     return (
-        <React.Fragment>
+        <DndProvider backend={HTML5Backend}>
             <div className={"forms-container"}>
                 <Title title={title} />
                 {forms}
@@ -62,7 +81,7 @@ const FormApp = (): JSX.Element => {
                         value={addFormType}
                         options={formTypeItems}
                         placeholder={"Select a Type"}
-                        onChange={(e) => {
+                        onChange={(e: DropdownChangeParams) => {
                             onBeginAddingForm(e);
                         }}
                     />
@@ -72,7 +91,7 @@ const FormApp = (): JSX.Element => {
                     </div>
                 )}
             </div>
-        </React.Fragment>
+        </DndProvider>
     );
 };
 

@@ -13,6 +13,7 @@ import {
     type DuplicateFormAction,
     type SetRequiredAction,
     type ActionType,
+    type ChangeFormOrder,
 } from "store/actions/formActions";
 
 const initialState: FormState = {
@@ -123,6 +124,22 @@ const changeOptions = (state: FormState, action: ChangeOptionsAction): FormState
     };
 };
 
+const changeFormOrder = (state: FormState, action: ChangeFormOrder): FormState => {
+    const { dragIndex, hoverIndex } = action;
+    if (dragIndex !== hoverIndex) {
+        const dragItem = state.formList[action.dragIndex];
+        const newFormList = [...state.formList];
+        newFormList.splice(dragIndex, 1);
+        newFormList.splice(hoverIndex, 0, dragItem);
+        return {
+            ...state,
+            formList: newFormList,
+        };
+    } else {
+        return state;
+    }
+};
+
 const reducer: Reducer<FormState, ActionType> = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_TITLE:
@@ -141,6 +158,8 @@ const reducer: Reducer<FormState, ActionType> = (state = initialState, action) =
             return setRequired(state, action);
         case actionTypes.CHANGE_OPTIONS:
             return changeOptions(state, action);
+        case actionTypes.CHANGE_FORM_ORDER:
+            return changeFormOrder(state, action);
         default:
             return state;
     }
