@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as _ from "lodash";
+
 import { DndProvider } from "react-dnd";
 
 import ShortAnswer from "components/Form/ShortAnswer";
@@ -49,13 +51,13 @@ const FormApp = (): JSX.Element => {
         setIsAddingForm(false);
     };
 
-    const moveItem = (dragIndex: number, hoverIndex: number): void => {
+    const moveItem = _.debounce((dragIndex: number, hoverIndex: number): void => {
         dispatch({
             type: actionTypes.CHANGE_FORM_ORDER,
             dragIndex,
             hoverIndex,
         });
-    };
+    }, 100);
 
     const forms = formList.map((x, i) => {
         if (!(x.formType in formTypeToComponent)) {

@@ -32,7 +32,7 @@ export const DraggableWrapper: React.FC<IDraggableWrapperProps> = ({ id, moveIte
     });
 
     return (
-        <div ref={(node) => drag(drop(node))} style={{ opacity: isDragging ? 0.5 : 1 }}>
+        <div ref={(node) => drag(drop(node))} style={{ opacity: isDragging ? 0.7 : 1 }}>
             {children}
         </div>
     );
