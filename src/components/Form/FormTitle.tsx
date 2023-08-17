@@ -19,7 +19,7 @@ const Title = (props: ITitleProps): JSX.Element => {
     const dispatch = useDispatch();
 
     return (
-        <div className="p-form-container">
+        <div className="p-form-container" style={{ marginBottom: "10px", marginTop: "10px" }}>
             <div>
                 <InputText
                     className="p-field"
