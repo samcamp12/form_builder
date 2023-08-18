@@ -4,11 +4,11 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { createNewId } from "store/utils";
 import { useDispatch } from "react-redux";
-import ControlBar from "components/Control/ControlBar";
+import ControlBar from "components/FormBuilder/Control/ControlBar";
 import * as actionTypes from "store/actions/actionTypes";
 import { FormOptionValidator } from "components/Error/FormOptionValidator";
-import { FormTitle } from "./FormComponents/FormTitle";
-import { type Option } from "./FormTypes";
+import { SubTitle } from "./SubTitle";
+import { type Option } from "../Types/FormTypes";
 
 interface IMultipleChoiceProps {
     id: number;
@@ -16,7 +16,7 @@ interface IMultipleChoiceProps {
     title: string;
 }
 
-const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
+export const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
     const { id, options, title } = props;
     const dispatch = useDispatch();
 
@@ -107,7 +107,7 @@ const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
     return (
         <div className="p-form-container">
             <div className="p-form-index">#{id + 1}</div>
-            <FormTitle id={id} title={title} />
+            <SubTitle id={id} title={title} />
             <div className="multiple-choice-list">{choiceList}</div>
             {beginAddOption ? (
                 <div>
@@ -142,5 +142,3 @@ const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
         </div>
     );
 };
-
-export default MultipleChoice;

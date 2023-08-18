@@ -3,6 +3,7 @@ import { Button } from "primereact/button";
 import { InputSwitch } from "primereact/inputswitch";
 import { useSelector, useDispatch } from "react-redux";
 import * as actionTypes from "store/actions/actionTypes";
+import { type RootState } from "store/store";
 
 interface IControlBarProps {
     formId: number;
@@ -11,12 +12,14 @@ interface IControlBarProps {
 const ControlBar = (props: IControlBarProps): JSX.Element => {
     const { formId } = props;
 
-    const formData = useSelector((state: any) =>
+    const formData = useSelector((state: RootState) =>
         state.formState.formList.find((x: { id: number }) => x.id === formId)
     );
     const dispatch = useDispatch();
 
-    const [isRequired, setIsRequired] = React.useState<boolean>(formData.isRequired);
+    const [isRequired, setIsRequired] = React.useState<boolean>(
+        formData != null ? formData.isRequired : false
+    );
 
     const onDuplicateClick = (): void => {
         dispatch({

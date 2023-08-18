@@ -11,15 +11,13 @@ interface ITitleProps {
     };
 }
 
-const Title = (props: ITitleProps): JSX.Element => {
+export const Title = (props: ITitleProps): JSX.Element => {
     const { title } = props;
-
-    console.log(title);
 
     const dispatch = useDispatch();
 
     return (
-        <div className="p-form-container" style={{ marginBottom: "10px", marginTop: "10px" }}>
+        <div className="p-form-container" style={{ marginBottom: "20px", marginTop: "10px" }}>
             <div>
                 <InputText
                     className="p-field"

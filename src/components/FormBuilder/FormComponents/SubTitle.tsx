@@ -8,7 +8,7 @@ interface IFormTitleProps {
     title: string;
 }
 
-export const FormTitle = (props: IFormTitleProps): JSX.Element => {
+export const SubTitle = (props: IFormTitleProps): JSX.Element => {
     const { id, title } = props;
     const dispatch = useDispatch();
     const handleInputText = (title: string): void => {

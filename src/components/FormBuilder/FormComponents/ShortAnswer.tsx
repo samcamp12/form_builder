@@ -1,21 +1,21 @@
 import * as React from "react";
 import { InputText } from "primereact/inputtext";
-import ControlBar from "components/Control/ControlBar";
-import { FormTitle } from "./FormComponents/FormTitle";
+import ControlBar from "components/FormBuilder/Control/ControlBar";
+import { SubTitle } from "./SubTitle";
 
 interface IShortAnswerProps {
     id: number;
     title: string;
 }
 
-const ShortAnswer = (props: IShortAnswerProps): JSX.Element => {
+export const ShortAnswer = (props: IShortAnswerProps): JSX.Element => {
     const { id, title } = props;
     const [shortAnswer, setShortAnswer] = React.useState("");
 
     return (
         <div className="p-form-container">
             <div className="p-form-index">#{id + 1}</div>
-            <FormTitle id={id} title={title} />
+            <SubTitle id={id} title={title} />
             <div>
                 <InputText
                     className="p-field"
@@ -32,5 +32,3 @@ const ShortAnswer = (props: IShortAnswerProps): JSX.Element => {
         </div>
     );
 };
-
-export default ShortAnswer;

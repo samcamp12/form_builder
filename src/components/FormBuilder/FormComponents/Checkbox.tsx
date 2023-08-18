@@ -3,12 +3,12 @@ import { RadioButton, type RadioButtonChangeParams } from "primereact/radiobutto
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import { createNewId } from "store/utils";
-import ControlBar from "components/Control/ControlBar";
+import ControlBar from "components/FormBuilder/Control/ControlBar";
 import * as actionTypes from "store/actions/actionTypes";
 import { FormOptionValidator } from "components/Error/FormOptionValidator";
 import { useDispatch } from "react-redux";
-import { FormTitle } from "./FormComponents/FormTitle";
-import { type Option } from "./FormTypes";
+import { SubTitle } from "./SubTitle";
+import { type Option } from "../Types/FormTypes";
 
 interface ICheckboxProps {
     id: number;
@@ -16,7 +16,7 @@ interface ICheckboxProps {
     options: Option[];
 }
 
-const CheckBox = (props: ICheckboxProps): JSX.Element => {
+export const CheckBox = (props: ICheckboxProps): JSX.Element => {
     const { id, title, options } = props;
     const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = React.useState<string>();
@@ -94,7 +94,7 @@ const CheckBox = (props: ICheckboxProps): JSX.Element => {
     return (
         <div className="p-form-container">
             <div className="p-form-index">#{id + 1}</div>
-            <FormTitle id={id} title={title} />
+            <SubTitle id={id} title={title} />
             <div className="radio-button-list">{radioButtons}</div>
             <div>
                 {beginAddOption ? (
@@ -134,5 +134,3 @@ const CheckBox = (props: ICheckboxProps): JSX.Element => {
         </div>
     );
 };
-
-export default CheckBox;

@@ -1,4 +1,4 @@
-import { type Option } from "components/Form/FormTypes";
+import { type Option } from "components/FormBuilder/Types/FormTypes";
 import { type FormTypeEnum } from "constants/FormTypeEnum";
 
 export interface Form {

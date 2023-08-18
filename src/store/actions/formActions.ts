@@ -1,6 +1,6 @@
 import { type FormTypeEnum } from "constants/FormTypeEnum";
 import type * as actionTypes from "./actionTypes";
-import { type Option } from "components/Form/FormTypes";
+import { type Option } from "components/FormBuilder/Types/FormTypes";
 
 interface BaseAction<T> {
     type: T;

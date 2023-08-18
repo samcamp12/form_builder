@@ -4,21 +4,21 @@ import * as _ from "lodash";
 
 import { DndProvider } from "react-dnd";
 
-import ShortAnswer from "components/Form/ShortAnswer";
-import Title from "components/Form/FormTitle";
 import { Dropdown, type DropdownChangeParams } from "primereact/dropdown";
 import { FormTypeEnum } from "constants/FormTypeEnum";
 
 import { useSelector, useDispatch } from "react-redux";
 
 import "styles/FormApp.scss";
-import CheckBox from "components/Form/Checkbox";
-import MultipleChoice from "components/Form/MultipleChoice";
 import { type AppDispatch, type RootState } from "store/store";
 
 import * as actionTypes from "store/actions/actionTypes";
 import { DraggableWrapper } from "components/DnD/DraggableWrapper";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { ShortAnswer } from "components/FormBuilder/FormComponents/ShortAnswer";
+import { CheckBox } from "components/FormBuilder/FormComponents/Checkbox";
+import Title from "components/FormBuilder/FormComponents/FormTitle";
+import { MultipleChoice } from "components/FormBuilder/FormComponents/MultipleChoice";
 
 const formTypeToComponent = {
     [FormTypeEnum.shortAnswer]: ShortAnswer,
