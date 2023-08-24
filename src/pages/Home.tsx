@@ -1,9 +1,8 @@
 import * as React from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import FormApp from "./FormApp";
-import Preview from "./Preview";
+import Preview from "./Display";
 import bgBuilder from "images/builder-background.jpg";
-import bgPreview from "images/preview-background.jpg";
 
 const tabItems = [
     {
@@ -18,8 +17,7 @@ const tabItems = [
     {
         header: "Preview",
         content: (
-            <div className="content">
-                <img src={bgPreview} alt={"background"} />
+            <div>
                 <Preview />
             </div>
         ),
