@@ -8,7 +8,7 @@ const tabItems = [
     {
         header: "Form Builder",
         content: (
-            <div className="content">
+            <div>
                 <img src={bgBuilder} alt={"background"} />
                 <FormApp />
             </div>
