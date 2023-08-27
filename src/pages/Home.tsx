@@ -4,11 +4,13 @@ import FormApp from "./FormApp";
 import Preview from "./Display";
 import bgBuilder from "images/builder-background.jpg";
 
+import "../styles/Home.scss";
+
 const tabItems = [
     {
         header: "Form Builder",
         content: (
-            <div>
+            <div className="content">
                 <img src={bgBuilder} alt={"background"} />
                 <FormApp />
             </div>
@@ -17,7 +19,7 @@ const tabItems = [
     {
         header: "Preview",
         content: (
-            <div>
+            <div className="content-display">
                 <Preview />
             </div>
         ),

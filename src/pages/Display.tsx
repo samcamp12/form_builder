@@ -5,7 +5,7 @@ import "../styles/Display.scss";
 
 const Preview = (): JSX.Element => {
     return (
-        <div className={"questionnaire-container"}>
+        <div className={"questionnaire-background"}>
             <Container />
         </div>
     );

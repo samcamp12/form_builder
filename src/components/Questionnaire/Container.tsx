@@ -7,9 +7,13 @@ import { DisplayCheckBox } from "./DisplayCheckbox";
 import { DisplayMultiSelect } from "./DisplayMultiSelect";
 
 const formTypeToComponent = {
-    [FormTypeEnum.shortAnswer]: DisplayShortAnswer,
-    [FormTypeEnum.checkBox]: DisplayCheckBox,
-    [FormTypeEnum.multipleChoice]: DisplayMultiSelect,
+    [FormTypeEnum.shortAnswer]: <DisplayShortAnswer />,
+    [FormTypeEnum.checkBox]: <DisplayCheckBox />,
+    [FormTypeEnum.multipleChoice]: <DisplayMultiSelect />,
+};
+
+const EmptyMessage = (): JSX.Element => {
+    return <div>There is no Questions in form builder</div>;
 };
 
 export const Container = (): JSX.Element => {
@@ -21,14 +25,19 @@ export const Container = (): JSX.Element => {
         setBeginQuestions(true);
     };
 
-    const RenderQuestions = formTypeToComponent[formList[currentQuestion].formType];
+    const renderQuestions =
+        formList[currentQuestion] !== undefined ? (
+            formTypeToComponent[formList[currentQuestion].formType]
+        ) : (
+            <EmptyMessage />
+        );
 
     return (
         <>
             <div className="display-container">
                 <div>{title.formTitle}</div>
                 {beginQuestions ? (
-                    <RenderQuestions />
+                    renderQuestions
                 ) : (
                     <div onClick={onBeginQuestions}>Begin Survey</div>
                 )}
