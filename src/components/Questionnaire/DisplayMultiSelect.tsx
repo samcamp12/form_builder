@@ -1,5 +1,9 @@
 import * as React from "react";
 
-export const DisplayMultiSelect = (): JSX.Element => {
-    return <div>MultiSelect</div>;
+interface IDisplayMultiSelect {
+    title: string;
+}
+
+export const DisplayMultiSelect = ({ title }: IDisplayMultiSelect): JSX.Element => {
+    return <div>{title}</div>;
 };

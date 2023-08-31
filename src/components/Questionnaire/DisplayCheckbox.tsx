@@ -1,5 +1,9 @@
 import * as React from "react";
 
-export const DisplayCheckBox = (): JSX.Element => {
-    return <div>Checkbox</div>;
+interface IDisplayCheckBox {
+    title: string;
+}
+
+export const DisplayCheckBox = ({ title }: IDisplayCheckBox): JSX.Element => {
+    return <div>{title}</div>;
 };

@@ -1,16 +1,7 @@
-import { FormTypeEnum } from "constants/FormTypeEnum";
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { type RootState } from "store/store";
-import { DisplayShortAnswer } from "./DisplayShortAnswer";
-import { DisplayCheckBox } from "./DisplayCheckbox";
-import { DisplayMultiSelect } from "./DisplayMultiSelect";
-
-const formTypeToComponent = {
-    [FormTypeEnum.shortAnswer]: <DisplayShortAnswer />,
-    [FormTypeEnum.checkBox]: <DisplayCheckBox />,
-    [FormTypeEnum.multipleChoice]: <DisplayMultiSelect />,
-};
+import { Questions } from "./Questions";
 
 const EmptyMessage = (): JSX.Element => {
     return <div>There is no Questions in form builder</div>;
@@ -27,7 +18,7 @@ export const Container = (): JSX.Element => {
 
     const renderQuestions =
         formList[currentQuestion] !== undefined ? (
-            formTypeToComponent[formList[currentQuestion].formType]
+            <Questions content={formList[currentQuestion]} />
         ) : (
             <EmptyMessage />
         );
@@ -37,7 +28,7 @@ export const Container = (): JSX.Element => {
             <div className="display-container">
                 <div>{title.formTitle}</div>
                 {beginQuestions ? (
-                    renderQuestions
+                    <div>{renderQuestions}</div>
                 ) : (
                     <div onClick={onBeginQuestions}>Begin Survey</div>
                 )}
