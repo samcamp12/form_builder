@@ -1,7 +1,9 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { type RootState } from "store/store";
-import { Questions } from "./Questions";
+
+import { QuestionProgress } from "./QuestionProgress";
+import { Questions } from "./Questions/Questions";
 import { StepButton } from "./StepButton";
 
 const EmptyMessage = (): JSX.Element => {
@@ -17,13 +19,6 @@ export const Container = (): JSX.Element => {
         setBeginQuestions(true);
     };
 
-    const renderQuestions =
-        formList[currentQuestion] !== undefined ? (
-            <Questions content={formList[currentQuestion]} />
-        ) : (
-            <EmptyMessage />
-        );
-
     const onChangeQuestion = (index: number): void => {
         const formListLength = formList.length;
         if (index < 0 || index >= formListLength) {
@@ -31,6 +26,17 @@ export const Container = (): JSX.Element => {
         }
         setCurrentQuestion(index);
     };
+
+    const renderQuestions =
+        formList[currentQuestion] !== undefined ? (
+            <div className={"render-questions"}>
+                <Questions content={formList[currentQuestion]} />
+                <StepButton currentQuestion={currentQuestion} onChangeQuestion={onChangeQuestion} />
+                <QuestionProgress total={formList.length} current={currentQuestion + 1} />
+            </div>
+        ) : (
+            <EmptyMessage />
+        );
 
     return (
         <>
@@ -41,7 +47,6 @@ export const Container = (): JSX.Element => {
                 ) : (
                     <div onClick={onBeginQuestions}>Begin Survey</div>
                 )}
-                <StepButton currentQuestion={currentQuestion} onChangeQuestion={onChangeQuestion} />
             </div>
         </>
     );

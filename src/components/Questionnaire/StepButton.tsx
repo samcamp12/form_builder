@@ -13,15 +13,15 @@ export const StepButton = ({
     return (
         <div className="step-button">
             <Button
-                label="Next"
-                onClick={() => {
-                    onChangeQuestion(currentQuestion + 1);
-                }}
-            />
-            <Button
                 label="Back"
                 onClick={() => {
                     onChangeQuestion(currentQuestion - 1);
+                }}
+            />
+            <Button
+                label="Next"
+                onClick={() => {
+                    onChangeQuestion(currentQuestion + 1);
                 }}
             />
         </div>
