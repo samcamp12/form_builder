@@ -8,16 +8,12 @@ interface IQuestionProgress {
 
 export const QuestionProgress = ({ total, current }: IQuestionProgress): JSX.Element => {
     const valueTemplate = (value: number): React.ReactNode => {
-        return (
-            <React.Fragment>
-                {value}/<b>{total}</b>
-            </React.Fragment>
-        );
+        return <div>{`${(value * total) / 100} OF ${total}`}</div>;
     };
 
     return (
         <div className="card">
-            <ProgressBar value={current} displayValueTemplate={valueTemplate} />
+            <ProgressBar value={(current * 100) / total} displayValueTemplate={valueTemplate} />
         </div>
     );
 };
