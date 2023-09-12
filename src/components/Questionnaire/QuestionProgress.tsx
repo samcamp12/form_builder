@@ -12,7 +12,7 @@ export const QuestionProgress = ({ total, current }: IQuestionProgress): JSX.Ele
     };
 
     return (
-        <div className="card">
+        <div className="progressbar">
             <ProgressBar value={(current * 100) / total} displayValueTemplate={valueTemplate} />
         </div>
     );

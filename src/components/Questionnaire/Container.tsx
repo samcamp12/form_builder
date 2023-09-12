@@ -30,7 +30,10 @@ export const Container = (): JSX.Element => {
     const renderQuestions =
         formList[currentQuestion] !== undefined ? (
             <div className={"render-questions"}>
-                <Questions content={formList[currentQuestion]} />
+                <h2 className="questions-title">{formList[currentQuestion].title}</h2>
+                <div className="questions">
+                    <Questions content={formList[currentQuestion]} />
+                </div>
                 <StepButton currentQuestion={currentQuestion} onChangeQuestion={onChangeQuestion} />
                 <QuestionProgress total={formList.length} current={currentQuestion + 1} />
             </div>

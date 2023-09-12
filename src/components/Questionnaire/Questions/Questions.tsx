@@ -14,9 +14,9 @@ interface IQuestions {
 export const Questions = ({ content }: IQuestions): JSX.Element => {
     switch (content.formType) {
         case FormTypeEnum.shortAnswer:
-            return <DisplayShortAnswer title={content.title} />;
+            return <DisplayShortAnswer id={content.id} />;
         case FormTypeEnum.checkBox:
-            return <DisplayCheckBox title={content.title} />;
+            return <DisplayCheckBox questionId={content.id} options={content.options} />;
         case FormTypeEnum.multipleChoice:
             return <DisplayMultiSelect title={content.title} />;
         default:

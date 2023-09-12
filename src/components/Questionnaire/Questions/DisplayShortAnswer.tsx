@@ -3,15 +3,15 @@ import * as React from "react";
 import { useShortAnswer } from "services/hooks/useShortAnswer";
 
 interface IDisplayShortAnswer {
-    title: string;
+    id: number;
 }
 
-export const DisplayShortAnswer = ({ title }: IDisplayShortAnswer): JSX.Element => {
+export const DisplayShortAnswer = ({ id }: IDisplayShortAnswer): JSX.Element => {
     const { value, onShortAnswerChange } = useShortAnswer();
+    console.log(id);
 
     return (
-        <div className="shortAnswer-display">
-            <div className={"display-title"}>{title}</div>
+        <div className="short-answer">
             <InputTextarea
                 id="username"
                 value={value}
