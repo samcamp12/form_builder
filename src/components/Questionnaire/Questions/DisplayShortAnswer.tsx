@@ -11,15 +11,14 @@ export const DisplayShortAnswer = ({ id }: IDisplayShortAnswer): JSX.Element => 
     console.log(id);
 
     return (
-        <div className="short-answer">
-            <InputTextarea
-                id="username"
-                value={value}
-                onChange={onShortAnswerChange}
-                rows={5}
-                cols={30}
-                placeholder="Please give a short answer"
-            />
-        </div>
+        <InputTextarea
+            id="username"
+            value={value}
+            onChange={onShortAnswerChange}
+            rows={5}
+            cols={30}
+            className="short-answer"
+            placeholder="Please give a short answer"
+        />
     );
 };

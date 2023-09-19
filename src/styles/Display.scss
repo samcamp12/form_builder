@@ -1,5 +1,9 @@
 @import "./color";
 
+* {
+    box-sizing: border-box;
+}
+
 .questionnaire-background {
     height: 100%;
     background: $primary-color;
@@ -19,28 +23,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 1px dotted gray;
     .render-questions {
+        width: 40vw;
         margin-top: 20%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        border: 1px dotted gray;
         .questions-title {
             margin-bottom: 20px;
             color: $text-color;
+            border: 1px dotted gray;
 
         }
         .questions {
             width: 100%;
             height: 20vh;
+            border: 1px dotted gray;
             .short-answer {
                 width: 80%;
                 margin: auto;
+                border: 1px dotted gray;
             }
             .checkbox {
                 display: flex;
                 flex-wrap: wrap;
                 margin: auto;
-                width: 340px;
+                width: 342px;
+                border: 1px dotted gray;
                 .option {
                     margin: 10px;
                     width: 150px;
@@ -66,6 +77,7 @@
         }
         .progressbar {
             margin-top: 20px;
+            border: 1px dotted gray;
             width: 100%;
         }
     }
