@@ -14,6 +14,7 @@ export const Container = (): JSX.Element => {
     const { formList, title } = useSelector((state: RootState) => state.formState);
     const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
     const [beginQuestions, setBeginQuestions] = React.useState<boolean>(false);
+    console.log(process.env.PUBLIC_URL);
 
     const onBeginQuestions = (): void => {
         setBeginQuestions(true);
@@ -40,13 +41,21 @@ export const Container = (): JSX.Element => {
         ) : (
             <EmptyMessage />
         );
+    const picture = (
+        <div className={"side-picture"}>
+            <img alt={"side picture"} src={"/images/bg-draw.jpg"} />
+        </div>
+    );
 
     return (
         <>
             <div className="display-container">
-                <div>{title.formTitle}</div>
+                {picture}
                 {beginQuestions ? (
-                    <div>{renderQuestions}</div>
+                    <>
+                        <div>{title.formTitle}</div>
+                        {renderQuestions}
+                    </>
                 ) : (
                     <div onClick={onBeginQuestions}>Begin Survey</div>
                 )}

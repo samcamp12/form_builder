@@ -18,7 +18,7 @@ export const Questions = ({ content }: IQuestions): JSX.Element => {
         case FormTypeEnum.checkBox:
             return <DisplayCheckBox questionId={content.id} options={content.options} />;
         case FormTypeEnum.multipleChoice:
-            return <DisplayMultiSelect title={content.title} />;
+            return <DisplayMultiSelect questionId={content.id} options={content.options} />;
         default:
             return <></>;
     }

@@ -13,6 +13,7 @@
     justify-content: center;
 }
 
+
 .display-container {
     width: 85%;
     height: 85%;
@@ -21,15 +22,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     border: 1px dotted gray;
+    .side-picture {
+        img {
+            width: 30vw;
+            height: 100%;
+        }
+    }
     .render-questions {
-        width: 40vw;
-        margin-top: 20%;
+        width: 100%;
+        margin: 40px 20px 0px 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        flex: flex-grow;
         border: 1px dotted gray;
         .questions-title {
             margin-bottom: 20px;
