@@ -14,7 +14,6 @@ export const Container = (): JSX.Element => {
     const { formList, title } = useSelector((state: RootState) => state.formState);
     const [currentQuestion, setCurrentQuestion] = React.useState<number>(0);
     const [beginQuestions, setBeginQuestions] = React.useState<boolean>(false);
-    console.log(process.env.PUBLIC_URL);
 
     const onBeginQuestions = (): void => {
         setBeginQuestions(true);
@@ -58,7 +57,7 @@ export const Container = (): JSX.Element => {
                     </>
                 ) : (
                     <div className={"start-message"} onClick={onBeginQuestions}>
-                        Begin Survey
+                        Begin Survey!
                     </div>
                 )}
             </div>

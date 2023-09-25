@@ -11,18 +11,20 @@ export const StepButton = ({
     onChangeQuestion,
 }: IStepButtonProps): JSX.Element => {
     return (
-        <div className="step-button">
+        <div className="step-buttons">
             <Button
                 label="Back"
                 onClick={() => {
                     onChangeQuestion(currentQuestion - 1);
                 }}
+                className="step-button back"
             />
             <Button
                 label="Next"
                 onClick={() => {
                     onChangeQuestion(currentQuestion + 1);
                 }}
+                className="step-button next"
             />
         </div>
     );
