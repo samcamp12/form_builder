@@ -57,7 +57,9 @@ export const Container = (): JSX.Element => {
                         {renderQuestions}
                     </>
                 ) : (
-                    <div onClick={onBeginQuestions}>Begin Survey</div>
+                    <div className={"start-message"} onClick={onBeginQuestions}>
+                        Begin Survey
+                    </div>
                 )}
             </div>
         </>

@@ -30,35 +30,41 @@
             height: 100%;
         }
     }
+    .start-message {
+        margin: auto;
+    }
     .render-questions {
         width: 100%;
-        margin: 40px 20px 0px 20px;
+        margin: 20% 20px 0px 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
         flex: flex-grow;
-        border: 1px dotted gray;
+        border: 1px dotted red;
         .questions-title {
             margin-bottom: 20px;
             color: $text-color;
-            border: 1px dotted gray;
+            border: 1px dotted green;
 
+        }
+        .top-message {
+            
         }
         .questions {
             width: 100%;
             height: 20vh;
-            border: 1px dotted gray;
+            border: 1px dotted pink;
             .short-answer {
                 width: 80%;
                 margin: auto;
-                border: 1px dotted gray;
+                border: 1px dotted orange;
             }
             .checkbox {
                 display: flex;
                 flex-wrap: wrap;
                 margin: auto;
                 width: 342px;
-                border: 1px dotted gray;
+                border: 1px dotted teal;
                 .option {
                     margin: 10px;
                     width: 150px;
