@@ -63,6 +63,13 @@
         .multiple-choice-list {
             .choice {
                 margin: 0.6rem;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-right: 30px;
+                label {
+                    flex-grow: 1;
+                }
                 .remove-option-button {
                     display: none;
                     height: 20px;
@@ -71,14 +78,14 @@
                     color: orangered;
                     border: 1px solid $primary-color;
                     border-radius: 5px;
-                    margin-right: 30px;
-                    float: right;   
                 }
                 &:hover {
                     .remove-option-button {
                         display: flex;
+                        align-items: center;
                         justify-content: center;
                     }
+                    background: rgba(red($bg-color), green($bg-color), blue($bg-color), 0.1);
                 }
             }
         }
