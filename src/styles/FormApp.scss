@@ -37,31 +37,8 @@
             border-color: dimgray;
         }
 
-        .radio-button-list {
-            .radio-button {
-                margin: 0.6rem;
-                .remove-option-button {
-                    display: none;
-                    height: 20px;
-                    width: 20px;
-                    background: white;
-                    color: orangered;
-                    border: 1px solid $primary-color;
-                    border-radius: 5px;
-                    margin-right: 30px;
-                    float: right;   
-                }
-                &:hover {
-                    .remove-option-button {
-                        display: flex;
-                        justify-content: center;
-                    }
-                }
-            }
-        }
-
-        .multiple-choice-list {
-            .choice {
+        .multiple-choice-list,.radio-button-list {
+            .choice,.radio-button  {
                 margin: 0.6rem;
                 display: flex;
                 flex-direction: row;
