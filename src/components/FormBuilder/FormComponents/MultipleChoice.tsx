@@ -23,24 +23,31 @@ export const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
     const [multiChoice, setMultiChoice] = React.useState<string[]>([]);
     const [beginAddOption, setBeginAddOption] = React.useState(false);
     const [newOptionInput, setNewOptionInput] = React.useState("");
-    const [error, setError] = React.useState<string>("");
+    const [optionError, setOptionError] = React.useState<string>("");
+    const [formError, setFormError] = React.useState<string>("");
 
-    const onAddOption = (): void => {
-        setBeginAddOption(true);
+    const onAddOption: React.MouseEventHandler = (e): void => {
+        e.stopPropagation();
+        if (options.length >= 4) {
+            setFormError("You can set up to 4 options");
+        } else {
+            setFormError("");
+            setBeginAddOption(true);
+        }
     };
 
     const onCloseOption = (): void => {
         setBeginAddOption(false);
-        setError("");
+        setOptionError("");
     };
 
     const onSaveOption = (): void => {
         if (newOptionInput === "") {
-            setError("cannot set empty options");
+            setOptionError("cannot set empty options");
             return;
         }
         if (!options.map((option) => option.name).includes(newOptionInput)) {
-            setError("");
+            setOptionError("");
             dispatch({
                 type: actionTypes.CHANGE_OPTIONS,
                 id,
@@ -56,7 +63,7 @@ export const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
             setNewOptionInput("");
             setBeginAddOption(false);
         } else {
-            setError("Cannot set duplicate options");
+            setOptionError("Cannot set duplicate options");
         }
     };
 
@@ -105,7 +112,11 @@ export const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
     });
 
     return (
-        <div className="p-form-container">
+        <div
+            className="p-form-container"
+            onClick={() => {
+                setFormError("");
+            }}>
             <div className="p-form-index">#{id + 1}</div>
             <SubTitle id={id} title={title} />
             <div className="multiple-choice-list">{choiceList}</div>
@@ -132,10 +143,17 @@ export const MultipleChoice = (props: IMultipleChoiceProps): JSX.Element => {
                             onClick={onCloseOption}
                         />
                     </div>
-                    <FormOptionValidator errorMessage={error} />
+                    <FormOptionValidator errorMessage={optionError} />
                 </div>
             ) : (
-                <Button label={"Add Choice"} onClick={onAddOption} className="add-option-button" />
+                <>
+                    <Button
+                        label={"Add Choice"}
+                        onClick={onAddOption}
+                        className="add-option-button"
+                    />
+                    <FormOptionValidator errorMessage={formError} />
+                </>
             )}
 
             <ControlBar formId={id} />
