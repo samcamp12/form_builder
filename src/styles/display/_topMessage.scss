@@ -1,0 +1,20 @@
+@import "../color";
+
+.top-message {
+    margin-top: 5px;
+    align-self: flex-start;
+    font-size: 0.8rem;
+    font-weight: bold;
+    font-family: 'Gabarito', 'cursive';
+    &-a {
+        margin-right: 5px;
+    }
+    &-b {
+        color: $primary-color-light;
+        margin-right: 5px;
+    }
+    &-c {
+        color: $primary-color;
+        margin-right: 5px;
+    }
+}

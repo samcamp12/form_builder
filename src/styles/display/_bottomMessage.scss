@@ -1,0 +1,23 @@
+@import "../color";
+
+.bottom-message {
+    margin-top: auto;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &-service {
+        margin-bottom: 10px;
+        &-text {
+            margin-right: 10px;
+            color: $primary-color;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: 'Gabarito', 'cursive';
+        }
+    }
+    &-rights {
+        margin-bottom: 10px;
+        color: silver;
+    }
+}

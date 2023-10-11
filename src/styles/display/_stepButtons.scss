@@ -1,0 +1,37 @@
+.step-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px auto;
+    width: 80%;
+    .step-button {
+        border: none;
+        outline: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+        &.back {
+            background-color: #f2f2f2;
+            color: #555;
+            &:hover {
+                box-shadow: 0 5px 15px rgba(150, 150, 150, 0.3);
+            }
+        }
+        &.next {
+            background-color: $primary-color;
+            color: white;
+            &:hover {
+                box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            }
+        }
+        &:hover {
+            transform: scale(1.05);
+        }
+        &:active {
+            transform: scale(1);
+            box-shadow: none;
+        }
+    }
+}

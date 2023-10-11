@@ -5,6 +5,8 @@ import { type RootState } from "store/store";
 import { QuestionProgress } from "./QuestionProgress";
 import { Questions } from "./Questions/Questions";
 import { StepButton } from "./StepButton";
+import { TopMessage } from "./TopMessage";
+import { BottomMessage } from "./BottomMessage";
 
 const EmptyMessage = (): JSX.Element => {
     return <div>There is no Questions in form builder</div>;
@@ -29,14 +31,14 @@ export const Container = (): JSX.Element => {
 
     const renderQuestions =
         formList[currentQuestion] !== undefined ? (
-            <div className={"render-questions"}>
+            <>
                 <h2 className="questions-title">{formList[currentQuestion].title}</h2>
                 <div className="questions">
                     <Questions content={formList[currentQuestion]} />
                 </div>
                 <StepButton currentQuestion={currentQuestion} onChangeQuestion={onChangeQuestion} />
                 <QuestionProgress total={formList.length} current={currentQuestion + 1} />
-            </div>
+            </>
         ) : (
             <EmptyMessage />
         );
@@ -51,10 +53,12 @@ export const Container = (): JSX.Element => {
             <div className="display-container">
                 {picture}
                 {beginQuestions ? (
-                    <>
-                        <div>{title.formTitle}</div>
+                    <div className={"render-questions"}>
+                        <TopMessage />
+                        <div className="form-title">{title.formTitle}</div>
                         {renderQuestions}
-                    </>
+                        <BottomMessage />
+                    </div>
                 ) : (
                     <div className={"start-message"} onClick={onBeginQuestions}>
                         Begin Survey!

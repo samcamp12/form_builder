@@ -1,4 +1,11 @@
 @import "./color";
+@import "./display/display-container";
+@import "./display/progressbar";
+@import "./display/questions";
+@import "./display/stepButtons";
+@import "./font";
+@import "./display/topMessage";
+@import "./display/bottomMessage";
 
 * {
     box-sizing: border-box;
@@ -13,127 +20,8 @@
     justify-content: center;
 }
 
-
-.display-container {
-    width: 85%;
-    height: 85%;
-    background: $card-bg;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    border: 1px dotted gray;
-    .side-picture {
-        img {
-            width: 30vw;
-            height: 100%;
-        }
-    }
-    .start-message {
-        margin: auto;
-        font-family: cursive;
-        font-size: 5rem;
-    }
-    .render-questions {
-        width: 100%;
-        margin: 15vh 20px 0px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex: flex-grow;
-        border: 1px dotted red;
-        .questions-title {
-            margin-bottom: 20px;
-            color: $text-color;
-            border: 1px dotted green;
-
-        }
-        .top-message {
-            
-        }
-        .questions {
-            width: 100%;
-            height: 20vh;
-            border: 1px dotted pink;
-            .short-answer {
-                width: 80%;
-                margin: auto;
-                border: 1px dotted orange;
-            }
-            .checkbox {
-                display: flex;
-                flex-wrap: wrap;
-                margin: auto;
-                width: 342px;
-                border: 1px dotted teal;
-                .option {
-                    margin: 10px;
-                    width: 150px;
-                    height: 50px;
-                    background: white;
-                    color: $text-color;
-                    border: 2px solid $bg-color;
-                    outline: none;
-                    transition: box-shadow 0.3s ease;
-                    &.selected {
-                        border: none;
-                        box-shadow: 0 0 0 3px $selected-color;
-                    }
-                }
-            }
-        }
-        .step-buttons {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            margin: 20px auto;
-            width: 80%;
-            .step-button {
-                border: none;
-                outline: none;
-                padding: 10px 20px;
-                border-radius: 25px;
-                font-size: 1rem;
-                cursor: pointer;
-                transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
-                &.back {
-                    background-color: #f2f2f2;
-                    color: #555;
-                    &:hover {
-                        box-shadow: 0 5px 15px rgba(150, 150, 150, 0.3);
-                    }
-                }
-                &.next {
-                    background-color: $primary-color;
-                    color: white;
-                    &:hover {
-                        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-                    }
-                }
-                &:hover {
-                    transform: scale(1.05);
-                }
-                &:active {
-                    transform: scale(1);
-                    box-shadow: none;
-                }
-            }
-        }
-        .progressbar {
-            margin-top: 20px;
-            border: 1px dotted gray;
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            .progress-text {
-                font-family: Andale Mono, monospace;
-                margin-bottom: 5px;
-                color: $text-color;
-            }
-            .p-progressbar {
-                height: 0.5rem;
-            }
-        }
-    }
+.form-title {
+    margin-top: 10px;
+    font-size: 2rem;
+    font-family: 'Roboto Slab', sans-serif;
 }
