@@ -49,22 +49,20 @@ export const Container = (): JSX.Element => {
     );
 
     return (
-        <>
-            <div className="display-container">
-                {picture}
-                {beginQuestions ? (
-                    <div className={"render-questions"}>
-                        <TopMessage />
-                        <div className="form-title">{title.formTitle}</div>
-                        {renderQuestions}
-                        <BottomMessage />
-                    </div>
-                ) : (
-                    <div className={"start-message"} onClick={onBeginQuestions}>
-                        Begin Survey!
-                    </div>
-                )}
-            </div>
-        </>
+        <div className="display-container">
+            {picture}
+            {beginQuestions ? (
+                <div className={"render-questions"}>
+                    <TopMessage />
+                    <div className="form-title">{title.formTitle}</div>
+                    {renderQuestions}
+                    <BottomMessage />
+                </div>
+            ) : (
+                <div className={"start-message"} onClick={onBeginQuestions}>
+                    Begin Survey!
+                </div>
+            )}
+        </div>
     );
 };

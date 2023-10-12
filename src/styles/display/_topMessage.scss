@@ -17,4 +17,12 @@
         color: $primary-color;
         margin-right: 5px;
     }
+    &-me {
+        font-size: 1rem;
+        color: $card-bg;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
 }
