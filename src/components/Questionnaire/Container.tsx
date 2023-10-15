@@ -53,8 +53,7 @@ export const Container = (): JSX.Element => {
             {picture}
             {beginQuestions ? (
                 <div className={"render-questions"}>
-                    <TopMessage />
-                    <div className="form-title">{title.formTitle}</div>
+                    <TopMessage formTitle={title.formTitle} />
                     {renderQuestions}
                     <BottomMessage />
                 </div>
