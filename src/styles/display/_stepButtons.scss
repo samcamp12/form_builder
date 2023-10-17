@@ -1,8 +1,9 @@
 .step-buttons {
+    border: 1px solid blue;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 20px auto;
+    margin-top: 10px;
     width: 80%;
     .step-button {
         border: none;
