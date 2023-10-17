@@ -1,11 +1,14 @@
 @import "../color";
 
 .top-message {
+    width: 100%;
     margin-top: 5px;
-    align-self: flex-start;
     font-size: 0.8rem;
     font-weight: bold;
     font-family: 'Gabarito', 'cursive';
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     &-a {
         margin-right: 5px;
     }
@@ -24,5 +27,9 @@
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
+    }
+    .form-title {
+        font-size: 1rem;
+        font-family: 'Roboto Slab', sans-serif;
     }
 }

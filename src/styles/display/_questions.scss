@@ -6,9 +6,10 @@
     align-items: center;
     flex: flex-grow;
     .questions-title {
-        margin-top: 5vh;
+        margin-top: 5px;
         margin-bottom: 20px;
         color: $text-color;
+        border: 1px solid orange;
     }
     .questions {
         border: 1px solid green;
