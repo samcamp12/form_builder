@@ -8,7 +8,7 @@
     font-family: 'Gabarito', 'cursive';
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     &-a {
         margin-right: 5px;
     }
@@ -23,6 +23,7 @@
     &-me {
         font-size: 1rem;
         color: $card-bg;
+        flex-grow: 1;
         user-select: none;
         -webkit-user-select: none;
         -moz-user-select: none;
