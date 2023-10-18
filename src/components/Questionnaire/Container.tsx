@@ -44,7 +44,7 @@ export const Container = (): JSX.Element => {
         );
     const picture = (
         <div className={"side-picture"}>
-            <img alt={"side picture"} src={"/images/bg-draw.jpg"} />
+            <img alt={"side picture"} src={"/images/bg-draw.jpg"} loading="lazy" />
         </div>
     );
 
