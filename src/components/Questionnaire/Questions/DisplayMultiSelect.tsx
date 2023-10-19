@@ -14,17 +14,17 @@ interface IMultiSelectOption {
 }
 
 export const DisplayMultiSelect = ({ questionId, options }: IDisplayMultiSelect): JSX.Element => {
-    const [selectedOption, setSelectedOption] = React.useState<number>();
+    const [selectedOptions, setSelectedOptions] = React.useState<number[]>([]);
 
     const handleClickOption = (optionId: number, isSelected: boolean): void => {
         if (isSelected) {
-            setSelectedOption(-1);
+            setSelectedOptions(selectedOptions.filter((x) => x !== optionId));
         } else {
-            setSelectedOption(optionId);
+            setSelectedOptions([...selectedOptions, optionId]);
         }
     };
 
-    const CheckBoxOption = ({
+    const MultiSelectOption = ({
         isSelected = false,
         option,
         id,
@@ -44,11 +44,11 @@ export const DisplayMultiSelect = ({ questionId, options }: IDisplayMultiSelect)
         <div className="checkbox">
             {options.map((option) => {
                 return (
-                    <CheckBoxOption
+                    <MultiSelectOption
                         key={option.id}
                         option={option.name}
                         id={option.id}
-                        isSelected={selectedOption === option.id}
+                        isSelected={selectedOptions.includes(option.id)}
                     />
                 );
             })}
