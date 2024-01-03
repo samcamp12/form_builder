@@ -15,7 +15,7 @@ Features:
 
 Installation:
 -------------
-1. Clone the repository: `git clone [repository-url]`
+1. Clone the repository: `git clone https://github.com/samcamp12/form_builder.git`
 2. Navigate to the project directory: `cd form-builder`
 3. Install the required dependencies: `npm install`
 4. Start the development server: `npm start`
@@ -38,7 +38,7 @@ We welcome contributions! If you'd like to contribute, please follow these steps
 
 Support:
 --------
-If you encounter any issues or have questions, please open an issue on our GitHub repository or contact us at [support-email].
+If you encounter any issues or have questions, please open an issue on our GitHub repository or contact us at ewang29m4@gmail.com.
 
 License:
 --------
