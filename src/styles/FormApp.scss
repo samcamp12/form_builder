@@ -7,9 +7,10 @@
     flex-direction: column;
     align-items: center;
     width: 450px;
+    border-radius: 10px;
     margin: auto;
-    border: 2px solid white;
-    background-color: $bg-color;
+
+    background-color: rgba(red($bg-color), green($bg-color), blue($bg-color), 0.6);
 
     .p-form-container {
         margin-bottom: 1rem;

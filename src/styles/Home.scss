@@ -1,23 +1,14 @@
 // background
 .content {
-    height: auto;
-    position: relative;
-    padding-top: 20px;
-    img {
-        /* Set rules to fill background */
-        min-height: 100%;
-            
-        /* Set up proportionate scaling */
-        width: 100%;
-        height: auto;
-            
-        /* Set up positioning */
-        position: fixed;
-        top: 0;
-        left: 0;
-
-        pointer-events: none;
-    }
+    position: fixed;
+    left: 0;
+    top: 56px;
+    height: calc(100vh - 56px);
+    width: 100%;
+    background-image: url('/images/professional.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%
 }
 
 .content-display {
@@ -35,3 +26,4 @@
     position: fixed !important;
     top: 0;
 }
+
