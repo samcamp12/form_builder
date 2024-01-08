@@ -24,7 +24,7 @@ export const Title = (props: ITitleProps): JSX.Element => {
                     id="question"
                     type="text"
                     value={title.formTitle ?? ""}
-                    placeholder="Form title"
+                    placeholder="Questionnaire title"
                     onChange={(e) =>
                         dispatch({ type: actionTypes.ADD_TITLE, formTitle: e.target.value })
                     }
@@ -36,7 +36,7 @@ export const Title = (props: ITitleProps): JSX.Element => {
                     id="answer"
                     type="text"
                     value={title.description ?? ""}
-                    placeholder="Form Description (Optional)"
+                    placeholder="Questionnaire Description (Optional)"
                     onChange={(e) =>
                         dispatch({
                             type: actionTypes.ADD_TITLE_DESCRIPTION,

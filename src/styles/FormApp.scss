@@ -7,32 +7,31 @@
     flex-direction: column;
     align-items: center;
     width: 450px;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
     margin: auto;
+    border: 2px solid silver;
+    
 
-    background-color: rgba(red($bg-color), green($bg-color), blue($bg-color), 0.6);
+    background-color: rgba(240, 240, 240, 0.8);
 
     .p-form-container {
         margin-bottom: 1rem;
         z-index: 10;
-        border: 2px solid white;
+        border: 2px solid grey;
         border-radius: 5px;
-        background-color: snow;
-        opacity: 0.9;
         width: 400px;
 
         .p-form-index {
-            position: absolute;
-            padding: 5px 0 0 10px;
+            margin: 5px;
+            margin-bottom: 0;
             font-size: 12px;
         }
         
         .p-field {
             font-size: 18px;
             padding: 5px;
-            margin: 15px 10px 10px 10px;
-            border-width: 0 0 2px 0;
-            background: none;
+            margin: 10px;
+            border-width: 0;
             border-radius: 0;
             width: 350px;
             border-color: dimgray;
