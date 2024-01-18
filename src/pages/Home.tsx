@@ -6,6 +6,9 @@ import Preview from "./Display";
 import "../styles/Home.scss";
 import { useSelector } from "react-redux";
 import { type RootState } from "store/store";
+import { AppMessage, type ToastType } from "components/AppMessage/AppMessage";
+import { validateFormTitle } from "services/utils/HomeUtils";
+import { ToastTypeEnum } from "constants/ToastTypeEnum";
 
 const tabItems = [
     {
@@ -28,6 +31,14 @@ const tabItems = [
 
 const Home = (): JSX.Element => {
     const { formList, title } = useSelector((state: RootState) => state.formState);
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const [appMessage, setAppMessage] = React.useState<{
+        type: ToastType;
+        text: string;
+    }>({
+        type: undefined,
+        text: "",
+    });
 
     const renderHomePage = tabItems.map((item) => {
         return (
@@ -39,13 +50,46 @@ const Home = (): JSX.Element => {
 
     const onTabChange = (param: TabViewTabChangeParams): void => {
         if (param.index === 1) {
-            console.log(formList, title);
+            if (title.formTitle === "") {
+                setAppMessage((prevState) => ({
+                    ...prevState,
+                    type: ToastTypeEnum.Error,
+                    text: "Please enter questionnaire title",
+                }));
+                setTimeout(() => {
+                    setAppMessage({
+                        type: undefined,
+                        text: "",
+                    });
+                }, 3000);
+                return;
+            }
+            if (!validateFormTitle(formList)) {
+                setAppMessage((prevState) => ({
+                    ...prevState,
+                    type: ToastTypeEnum.Error,
+                    text: "Please make sure all questions have a title",
+                }));
+                setTimeout(() => {
+                    setAppMessage({
+                        type: undefined,
+                        text: "",
+                    });
+                }, 3000);
+                return;
+            }
+            setActiveIndex(1);
+        } else {
+            setActiveIndex(0);
         }
     };
 
     return (
         <React.Fragment>
-            <TabView onTabChange={onTabChange}>{renderHomePage}</TabView>
+            <AppMessage type={appMessage.type} text={appMessage.text} />
+            <TabView activeIndex={activeIndex} onTabChange={onTabChange}>
+                {renderHomePage}
+            </TabView>
         </React.Fragment>
     );
 };
