@@ -12,7 +12,7 @@
     border: 2px solid silver;
     
 
-    background-color: rgba(240, 240, 240, 0.8);
+    background-color: rgba(222, 230, 231, 0.8);
 
     .p-form-container {
         margin-bottom: 1rem;
@@ -32,7 +32,7 @@
             padding: 5px;
             margin: 10px;
             border-width: 0;
-            border-radius: 0;
+            border-radius: 0.1;
             width: 350px;
             border-color: dimgray;
         }
@@ -149,7 +149,7 @@
 
         .required-unchecked {
             @extend %required;
-            color: gray;
+            color: grey;
             background: none;
         }
     }

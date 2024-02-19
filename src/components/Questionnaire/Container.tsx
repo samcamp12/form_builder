@@ -36,7 +36,11 @@ export const Container = (): JSX.Element => {
                 <div className="questions">
                     <Questions content={formList[currentQuestion]} />
                 </div>
-                <StepButton currentQuestion={currentQuestion} onChangeQuestion={onChangeQuestion} />
+                <StepButton
+                    currentQuestion={currentQuestion}
+                    formLength={formList.length}
+                    onChangeQuestion={onChangeQuestion}
+                />
                 <QuestionProgress total={formList.length} current={currentQuestion + 1} />
             </>
         ) : (
