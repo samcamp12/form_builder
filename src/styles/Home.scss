@@ -5,6 +5,7 @@
     top: 56px;
     height: calc(100vh - 56px);
     width: 100%;
+    overflow-y: auto;
     background-image: url('/images/pro-5.jpg');
     background-position: center;
     background-repeat: no-repeat;
